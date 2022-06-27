@@ -1,0 +1,21 @@
+#############
+### 공통 
+##############
+# embeded tomcat
+server:  
+  tomcat:
+    uri-encoding: UTF-8  
+
+
+     
+spring:
+  application:
+    name: kafka-consumer
+  profiles:
+    active: local
+    
+
+ 
+  
+ 
+  
