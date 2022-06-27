@@ -8,8 +8,7 @@ server:
 spring:
   cloud:
     stream:
-      function:  ## 반드시 있어야 함 
-#        definition: boardCreate;boardUpdate;boardDelete
+      function:
         definition: boardCreate
       kafka:
 #        default:
@@ -29,22 +28,11 @@ spring:
               mechanism: SCRAM-SHA-512
               jaas:
                 config: org.apache.kafka.common.security.scram.ScramLoginModule required username="my-user" password="pprOnk80CDfo";
-            
-#            ssl:
-#              truststore.location: classpath:/truststore.jks
-#              truststore.type: JKS
-#              truststore.password: new1234
 
       bindings:
         boardCreate-in-0:
           destination: my-topic
           group: my-topic-group
-#        boardUpdate-in-0:
-#          destination: order-board-update
-#          group: order-board-group
-#        boardDelete-in-0:
-#          destination: order-board-delete
-#          group: order-board-group
 
 
 
