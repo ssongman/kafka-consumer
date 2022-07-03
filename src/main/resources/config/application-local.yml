@@ -31,8 +31,8 @@ spring:
 
       bindings:
         boardCreate-in-0:
-          destination: edu-topic-01
-          group: edu-group-01
+          destination: edu-topic-02
+          group: edu-group-02
 
 
 
