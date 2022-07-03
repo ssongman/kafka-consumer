@@ -1,5 +1,7 @@
 package com.kt.icis.samp.kafkaconsumer.stream.functions;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.function.Consumer;
 
 import com.kt.icis.samp.kafkaconsumer.events.BoardCreateEvent;
@@ -30,13 +32,13 @@ public class BoardEventFunction {
             log.info("boardCreate 이벤트 수신: {}",msg); 
             try {
                 BoardCreateEvent event = mapper.fromJson(msg.getPayload(),BoardCreateEvent.class );
-                log.info("==============[Consumer]============BoardCreateEvent: {}", event.toString());
+                log.info("_____ BoardCreateEvent: {}", event.toString());
                 
                 repositoryBoardCreate(event);
                 
                 Acknowledgment acknowledgment = msg.getHeaders().get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);           
                 if(acknowledgment != null){
-                    log.info("==============[Consumer]===Acknowledgment provided");            
+                    log.info("_____ Acknowledgment provided");            
                     acknowledgment.acknowledge();
                 }             
             } catch (Exception e) {             
@@ -44,6 +46,8 @@ public class BoardEventFunction {
             }
         });
     }
+    
+
 
     @Bean
     public Consumer<Message<String>> boardUpdate(){
@@ -51,8 +55,9 @@ public class BoardEventFunction {
             log.info("boardUpdate 이벤트 수신: {}",msg); 
             try {
                 BoardUpdateEvent event = mapper.fromJson(msg.getPayload(),BoardUpdateEvent.class );
-                log.info("=============[Consumer]===================BoardUpdateEvent: {}", event.toString());
-                //repositoryBoardUpdate(event);
+                log.info("_____ BoardUpdateEvent: {}", event.toString());
+                
+                repositoryBoardUpdate(event);
                 
             } catch (Exception e) {             
                 e.printStackTrace();
@@ -66,8 +71,10 @@ public class BoardEventFunction {
             log.info("boardDelete 이벤트 수신: {}",msg); 
             try {
                 BoardDeleteEvent event = mapper.fromJson(msg.getPayload(),BoardDeleteEvent.class );
-                log.info("==============[Consumer]==================BoardDeleteEvent: {}", event.toString());
-                //repositoryBoardDelete(event);
+                log.info("_____ BoardDeleteEvent: {}", event.toString());
+                
+                repositoryBoardDelete(event);
+                
             } catch (Exception e) {             
                 e.printStackTrace();
             }
@@ -76,15 +83,15 @@ public class BoardEventFunction {
     }
 
     private void repositoryBoardCreate(BoardCreateEvent event) {        
-        log.info("======== BoardCreateEvent : {}", event.toString());
+        log.info("_____ repositoryBoardCreate : {}", event.toString());
     }
 
     private void repositoryBoardUpdate(BoardUpdateEvent event){
-        log.info("======== BoardUpdateEvent : {}", event.toString());
+        log.info("_____ repositoryBoardUpdate : {}", event.toString());
         
     }
     private void repositoryBoardDelete(BoardDeleteEvent event) {
-        log.info("======== BoardDeleteEvent : {}", event.toString());
+        log.info("_____ repositoryBoardDelete : {}", event.toString());
     }
 
     

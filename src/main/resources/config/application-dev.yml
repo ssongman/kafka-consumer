@@ -9,32 +9,36 @@ spring:
   cloud:
     stream:
       function:  ## 반드시 있어야 함 
-        definition: boardCreate;boardUpdate;boardDelete
+#        definition: boardCreate;boardUpdate;boardDelete
+        definition: boardCreate
       kafka:
         default:
            consumer:
              ack-mode: MANUAL_IMMEDIATE
         binder:
           brokers:
-          - sa-cluster-kafka-bootstrap:9092
+          - my-cluster-kafka-bootstrap:9092
           configuration:
             security:
               protocol: SASL_PLAINTEXT
             sasl:
               mechanism: SCRAM-SHA-512
               jaas:
-                config: org.apache.kafka.common.security.scram.ScramLoginModule required username="order-user" password="Kfix1IkttbDa";
+                config: org.apache.kafka.common.security.scram.ScramLoginModule required username="my-user" password="pprOnk80CDfo";
             
              
 
 
-      bindings:           
-        boardCreate-in-0:          
-          destination: order-board-create
-          group: order-board-group        
-        boardUpdate-in-0:
-          destination: order-board-update
-          group: order-board-group
-        boardDelete-in-0:
-          destination: order-board-delete
-          group: order-board-group
+      bindings:
+        boardCreate-in-0:
+          destination: edu-topic-01
+          group: edu-group-01
+#        boardCreate-in-0:          
+#          destination: order-board-create
+#          group: order-board-group        
+#        boardUpdate-in-0:
+#          destination: order-board-update
+#          group: order-board-group
+#        boardDelete-in-0:
+#          destination: order-board-delete
+#          group: order-board-group

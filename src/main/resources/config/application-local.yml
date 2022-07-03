@@ -27,12 +27,12 @@ spring:
             sasl:
               mechanism: SCRAM-SHA-512
               jaas:
-                config: org.apache.kafka.common.security.scram.ScramLoginModule required username="my-user" password="pprOnk80CDfo";
+                config: org.apache.kafka.common.security.scram.ScramLoginModule required username="my-user" password="KykkJNJTcTJB";
 
       bindings:
         boardCreate-in-0:
-          destination: my-topic
-          group: my-topic-group
+          destination: edu-topic-01
+          group: edu-group-01
 
 
 
